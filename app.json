@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "nucampsitenative",
+    "slug": "nucampsitenative",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
