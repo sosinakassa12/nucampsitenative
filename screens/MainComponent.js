@@ -6,6 +6,8 @@ import CampsiteInfoScreen from './CampsiteInfoScreen';
 import DirectoryScreen from './DirectoryScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './HomeScreen';
+import AboutScreen from './AboutScreen';
+import ContactScreen from './ContactScreen';
 
 const screenOptions = {
     headerTintColor: '#fff',
@@ -53,6 +55,30 @@ const DirectoryNavigator = () => {
 );
 };
 
+const AboutNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen 
+            name="About" 
+            component={AboutScreen} 
+            />
+        </Stack.Navigator>
+    );
+};
+
+const ContactNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen 
+            name="Contact" 
+            component={ContactScreen} 
+            options={{ title: 'Contact Us' }} />
+        </Stack.Navigator>
+    );
+};
+
 const Main = () => {
     return (
             <View style={{ flex: 1, paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight}}>
@@ -79,7 +105,22 @@ const Main = () => {
                     headerShown: false,
                     }}
                     />
-
+                     <Drawer.Screen
+                    name="AboutNav"
+                    component={AboutNavigator}
+                    options={{ 
+                        title: 'About Us', 
+                        headerShown: false 
+                    }}
+                    />
+                    <Drawer.Screen
+                        name="ContactNav"
+                        component={ContactNavigator}
+                        options={{ 
+                            title: 'Contact Us', 
+                            headerShown: false 
+                    }}
+                    />
                 </Drawer.Navigator>
 
             </View>
