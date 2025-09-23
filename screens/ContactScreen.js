@@ -1,6 +1,6 @@
 import React from 'react';
-import { ScrollView, Text } from 'react-native';
-import { Card } from 'react-native-elements';
+import { ScrollView } from 'react-native';
+import { Card, Text } from 'react-native-elements';
 
 const ContactScreen = () => {
     return (

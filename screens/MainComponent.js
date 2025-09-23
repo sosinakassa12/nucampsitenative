@@ -23,7 +23,7 @@ const HomeNavigator = () => {
         name='Home'
         component={HomeScreen}
         options={{ title: 'Home' }}
-    />
+        />
         </Stack.Navigator>
     );
 };
