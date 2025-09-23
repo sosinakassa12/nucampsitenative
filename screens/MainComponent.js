@@ -1,14 +1,15 @@
 
-import { StyleSheet, Platform, View } from 'react-native';
+import { StyleSheet, Platform, View, Image, Text } from 'react-native';
 import Constants from 'expo-constants';
 import { createStackNavigator } from '@react-navigation/stack';
 import CampsiteInfoScreen from './CampsiteInfoScreen';
 import DirectoryScreen from './DirectoryScreen';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import HomeScreen from './HomeScreen';
 import AboutScreen from './AboutScreen';
 import ContactScreen from './ContactScreen';
 import { Icon } from 'react-native-elements';
+import Logo from '../assets/images/logo.png';
 
 const screenOptions = {
     headerTintColor: '#fff',
@@ -121,11 +122,26 @@ const ContactNavigator = () => {
     );
 };
 
+const CustomDrawerContent = (props) => (
+    <DrawerContentScrollView {...props}>
+        <View style={styles.drawerHeader}>
+            <View style={{ flex: 1 }}>
+                <Image source={Logo} style={styles.drawerImage} />
+            </View>
+            <View style={{ flex: 2 }}>
+                <Text style={styles.drawerHeaderText}>Nucamp</Text>
+            </View>
+        </View>
+        <DrawerItemList {...props} labelStyle={{ fontWeight: 'bold' }} />
+    </DrawerContentScrollView>
+);
+
 const Main = () => {
     return (
             <View style={{ flex: 1, paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight}}>
                 <Drawer.Navigator
                 initialRouteName='HomeNav'
+                drawerContent={CustomDrawerContent}
                 screenOptions={{
                 drawerStyle: { backgroundColor: "#CEC8FF" },
                 headerShown: true,
@@ -206,6 +222,23 @@ const Main = () => {
 };
 
 const styles= StyleSheet.create({
+    drawerHeader: {
+    backgroundColor: '#5637DD',
+    height: 140,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'row'
+    },drawerHeaderText: {
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: 'bold'
+    },
+    drawerImage: {
+    margin: 10,
+    height: 60,
+    width: 60
+    },
     stackIcon: {
         marginLeft: 10,
         color: '#fff',
