@@ -22,14 +22,6 @@ const screenOptions = {
     headerStyle: { backgroundColor: '#5637DD' }
 }
 const Drawer = createDrawerNavigator();
-const dispatch = useDispatch();
-
-useEffect(() => {
-    dispatch(fetchCampsites());
-    dispatch(fetchPromotions());
-    dispatch(fetchPartners());
-    dispatch(fetchComments());
-}, [dispatch]);
 
 const HomeNavigator = () => {
     const Stack = createStackNavigator();
@@ -152,6 +144,16 @@ const CustomDrawerContent = (props) => (
 );
 
 const Main = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchCampsites());
+        dispatch(fetchPromotions());
+        dispatch(fetchPartners());
+        dispatch(fetchComments());
+    }, [dispatch]);
+
     return (
             <View style={{ flex: 1, paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight}}>
                 <Drawer.Navigator
