@@ -227,6 +227,7 @@ const Main = () => {
                         component={ReservationNavigator}
                         options={{
                             title: 'Reserve Campsite',
+                            headerShown: false,
                             drawerIcon: ({ color }) => (
                                 <Icon
                                     name='tree'
