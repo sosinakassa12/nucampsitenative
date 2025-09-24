@@ -1,25 +1,43 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
+import { Tile } from 'react-native-elements';
+import { useSelector } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+import Loading from '../components/LoadingComponent';
 
-function Loading() {
-    return (
-        <View style={styles.loadingView}>
-            <ActivityIndicator size='large' color='#5637DD' />
-            <Text style={styles.loadingText}>Loading . . .</Text>
-        </View>
-    );
-}
+const DirectoryScreen = ({ navigation }) => {
+    const campsites = useSelector((state) => state.campsites);
 
-const styles = StyleSheet.create({
-    loadingView: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1
-    },
-    loadingText: {
-        color: '#5637DD',
-        fontSize: 14,
-        fontWeight: 'bold'
+    if (campsites.isLoading) {
+        return <Loading />;
     }
-});
+    if (campsites.errMess) {
+        return (
+            <View>
+                <Text>{campsites.errMess}</Text>
+            </View>
+        );
+    }
 
-export default Loading;
+    const renderDirectoryItem = ({ item: campsite }) => {
+        return (
+            <Tile
+                title={campsite.name}
+                caption={campsite.description}
+                featured
+                onPress={() =>
+                    navigation.navigate('CampsiteInfo', { campsite })
+                }
+                imageSrc={{ uri: baseUrl + campsite.image }}
+            />
+        );
+    };
+    return (
+        <FlatList
+            data={campsites.campsitesArray}
+            renderItem={renderDirectoryItem}
+            keyExtractor={(item) => item.id.toString()}
+        />
+    );
+};
+
+export default DirectoryScreen;
