@@ -28,7 +28,6 @@ const CampsiteInfoScreen = ({ route }) => {
         };
         dispatch(postComment(newComment));
         setShowModal(!showModal);
-        resetForm();
     };
 
     const resetForm = () => {

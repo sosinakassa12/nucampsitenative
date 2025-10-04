@@ -24,9 +24,9 @@ const RenderCampsite = (props) => {
                         raised
                         reverse
                         onPress={() =>
-                            props.isFavorite
-                                ? console.log('Already set as a favorite')
-                                : props.markFavorite()
+                            // props.isFavorite
+                            //     ? console.log('Already set as a favorite')
+                                props.markFavorite()
                         }
                     />
                     <Icon
